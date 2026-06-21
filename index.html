@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>極・金運オーラ診断｜あなたの金運オーラを無料診断</title>
+<meta name="description" content="生年月日と今のお悩みから、あなたが生まれ持つ金運オーラの色を無料で診断します。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body class="start-page">
+
+<div class="bg-fog" aria-hidden="true"></div>
+<div class="bg-stars" aria-hidden="true"></div>
+
+<main class="page-container">
+
+  <header class="hero">
+    <p class="hero-eyebrow">無料金運診断</p>
+    <h1 class="hero-title">極・金運オーラ診断</h1>
+    <p class="hero-subcopy">
+      あなたに秘められた金運オーラの色と、<br>
+      まだ開花していない豊かさの力を無料で読み解きます。
+    </p>
+  </header>
+
+  <section class="intro-card" aria-label="診断の説明">
+    <p class="intro-text">
+      生年月日と今のお悩みから、<br>
+      あなたが生まれ持つ金運オーラの色を診断します。<br><br>
+      あなたには、<br>
+      まだ現実へ現れきっていない豊かさが<br>
+      眠っているかもしれません。
+    </p>
+  </section>
+
+  <form id="diagnosisForm" class="diagnosis-form" novalidate>
+
+    <!-- エラー表示エリア（aria-live） -->
+    <div id="formError" class="form-error" role="alert" aria-live="assertive"></div>
+
+    <!-- 生年月日 -->
+    <section class="form-section">
+      <h2 class="form-heading">あなたの生年月日を教えてください</h2>
+      <p class="form-caption">生まれた日に宿る金運オーラの色を読み解きます。</p>
+
+      <label for="birthDate" class="form-label">生年月日<span class="required-mark">必須</span></label>
+      <input
+        type="date"
+        id="birthDate"
+        name="birthDate"
+        class="form-input"
+        required
+        aria-describedby="birthDateError"
+      >
+      <p id="birthDateError" class="field-error" aria-live="polite"></p>
+    </section>
+
+    <!-- 悩み選択 -->
+    <section class="form-section">
+      <h2 class="form-heading">今、最も強く感じているお金の悩みを教えてください</h2>
+      <p class="form-caption">最も近いものを一つだけお選びください。</p>
+
+      <div class="concern-options" role="radiogroup" aria-labelledby="concernLegend" aria-describedby="concernError">
+        <span id="concernLegend" class="visually-hidden">お金の悩みの選択</span>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="income" class="concern-radio">
+          <span class="concern-text">頑張っているのに収入が増えない</span>
+        </label>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="spending" class="concern-radio">
+          <span class="concern-text">お金が入っても、なぜか残らない</span>
+        </label>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="talent" class="concern-radio">
+          <span class="concern-text">自分の才能をお金に変えられていない</span>
+        </label>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="stagnation" class="concern-radio">
+          <span class="concern-text">仕事や商売の流れが停滞している</span>
+        </label>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="futureAnxiety" class="concern-radio">
+          <span class="concern-text">将来のお金に漠然とした不安がある</span>
+        </label>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="receiving" class="concern-radio">
+          <span class="concern-text">大きなお金を受け取ることに抵抗がある</span>
+        </label>
+
+        <label class="concern-option">
+          <input type="radio" name="concern" value="unknownAction" class="concern-radio">
+          <span class="concern-text">金運を上げたいが、何をすればいいか分からない</span>
+        </label>
+      </div>
+      <p id="concernError" class="field-error" aria-live="polite"></p>
+    </section>
+
+    <!-- 自由記述 -->
+    <section class="form-section future-section">
+      <h2 class="form-heading">金運が開花したら、どんな未来を手に入れたいですか？</h2>
+      <p class="form-caption">
+        欲しい収入、叶えたい暮らし、守りたい人、挑戦したいことなど、自由にお書きください。
+      </p>
+
+      <label for="desiredFuture" class="form-label">
+        願う未来<span class="optional-mark">任意</span>
+      </label>
+      <textarea
+        id="desiredFuture"
+        name="desiredFuture"
+        class="form-textarea"
+        rows="4"
+        maxlength="300"
+        placeholder="収入を増やして家族を安心させたい
+自分の事業をもっと成長させたい
+お金を理由に諦めない生活がしたい"
+      ></textarea>
+      <p class="form-note">※この内容は診断結果ページにのみ表示され、診断計算には使用されません。</p>
+    </section>
+
+    <button type="submit" class="submit-button">
+      <span class="button-glow" aria-hidden="true"></span>
+      <span class="button-label">金運オーラを診断する</span>
+    </button>
+
+  </form>
+
+  <p class="form-disclaimer-pre">
+    ※生年月日とお悩みの選択は診断に必須です。<br>
+    入力いただいた情報は、お使いのブラウザ内だけで一時的に処理され、外部へ送信されることはありません。
+  </p>
+
+</main>
+
+</body>
+</html>

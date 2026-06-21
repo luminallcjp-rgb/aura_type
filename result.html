@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>診断結果｜極・金運オーラ診断</title>
+<meta name="description" content="あなたの金運オーラ診断結果です。">
+<link rel="stylesheet" href="style.css">
+<script src="result.js" defer></script>
+</head>
+<body id="resultBody" class="result-page">
+
+<div class="bg-fog" aria-hidden="true"></div>
+<div class="bg-stars" aria-hidden="true"></div>
+
+<!-- ============================== -->
+<!-- 診断中演出画面 -->
+<!-- ============================== -->
+<section id="loadingScreen" class="loading-screen" role="status" aria-live="polite">
+  <div class="loading-aura" aria-hidden="true">
+    <span class="loading-aura-core"></span>
+    <span class="loading-aura-ring ring-1"></span>
+    <span class="loading-aura-ring ring-2"></span>
+  </div>
+  <p id="loadingMessage" class="loading-message">生年月日に宿る金運の色を読み取っています</p>
+  <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 直接アクセス・データ不正時の案内 -->
+<!-- ============================== -->
+<section id="noDataScreen" class="no-data-screen" hidden>
+  <div class="no-data-card">
+    <p class="no-data-text">
+      診断結果が見つかりませんでした。<br>
+      最初のページから、もう一度診断を行ってください。
+    </p>
+    <a href="index.html" class="submit-button no-data-button">
+      <span class="button-label">診断を始める</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 結果本体 -->
+<!-- ============================== -->
+<main id="resultPage" class="page-container result-container" hidden>
+
+  <!-- 8-2. 診断結果（Attention） -->
+  <section class="result-hero" aria-label="診断結果">
+    <p class="result-hero-eyebrow">あなたの金運のオーラは</p>
+    <div class="aura-visual" id="auraVisual" aria-hidden="true">
+      <span class="aura-core"></span>
+      <span class="aura-layer layer-1"></span>
+      <span class="aura-layer layer-2"></span>
+      <span class="aura-layer layer-3"></span>
+      <span class="aura-particles"></span>
+    </div>
+    <h1 class="result-hero-title">
+      「<span id="auraColorName">深紅色</span>のオーラ」です
+    </h1>
+  </section>
+
+  <!-- 8-3. 色別の導入文章（Interest） -->
+  <section class="result-section card" aria-labelledby="introHeading">
+    <h2 id="introHeading" class="section-heading">あなたに宿る金運オーラ</h2>
+    <div id="auraIntroduction" class="rich-text"></div>
+  </section>
+
+  <!-- 8-4. 色別の秘められた金運（Interest） -->
+  <section class="result-section card" aria-labelledby="hiddenHeading">
+    <h2 id="hiddenHeading" class="section-heading">秘められた金運</h2>
+    <div id="auraHiddenFortune" class="rich-text"></div>
+  </section>
+
+  <!-- 8-5. 欲望の肯定（Desire／目的の教育） -->
+  <section class="result-section card desire-card" aria-labelledby="desireHeading">
+    <h2 id="desireHeading" class="section-heading">その願いについて</h2>
+    <div id="desireAffirmation" class="rich-text"></div>
+  </section>
+
+  <!-- 8-6. 選択した悩みの文章（Desire／問題の教育） -->
+  <section class="result-section card concern-card" aria-labelledby="concernTitleHeading">
+    <h2 id="concernTitleHeading" class="section-heading"></h2>
+    <div id="concernBody" class="rich-text"></div>
+  </section>
+
+  <!-- 8-7. 自由記述した未来（Desire） -->
+  <section id="futureSection" class="result-section card future-card" aria-labelledby="futureHeading" hidden>
+    <h2 id="futureHeading" class="section-heading">あなたが望んでいる未来</h2>
+    <blockquote id="desiredFutureText" class="future-quote"></blockquote>
+    <div id="desiredFutureCommonText" class="rich-text"></div>
+  </section>
+
+  <!-- 8-8. 色別の未来想像（Desire） -->
+  <section class="result-section card" aria-labelledby="futureVisionHeading">
+    <h2 id="futureVisionHeading" class="section-heading">この金運が、本来の形で活かされたら</h2>
+    <div id="auraFutureVision" class="rich-text"></div>
+  </section>
+
+  <!-- 8-9. 色別の無料でできる一歩（行動の教育） -->
+  <section class="result-section card action-card" aria-labelledby="firstActionHeading">
+    <h2 id="firstActionHeading" class="section-heading">今日からできる、最初の一歩</h2>
+    <div id="auraFirstAction" class="rich-text"></div>
+  </section>
+
+  <!-- 8-10. 色別の金運が開花していない理由（問題の教育） -->
+  <section class="result-section card" aria-labelledby="unopenedHeading">
+    <h2 id="unopenedHeading" class="section-heading">金運が、まだ完全に開花していない理由</h2>
+    <div id="auraUnopenedReason" class="rich-text"></div>
+  </section>
+
+  <!-- 8-11. 無料診断で分かる範囲（問題の教育＋手段の教育／Memory） -->
+  <section class="result-section card" aria-labelledby="limitHeading">
+    <h2 id="limitHeading" class="section-heading">今回の無料診断で分かったこと</h2>
+    <div id="freeDiagnosisLimit" class="rich-text"></div>
+  </section>
+
+  <!-- 8-12. 個別金運開花鑑定の必要性（手段の教育） -->
+  <section class="result-section card" aria-labelledby="needHeading">
+    <h2 id="needHeading" class="section-heading">個別金運開花鑑定について</h2>
+    <div id="personalReadingNeed" class="rich-text"></div>
+  </section>
+
+  <!-- 8-13. 鑑定で分かること（手段の教育＋投資の教育） -->
+  <section class="result-section card" aria-labelledby="detailsHeading">
+    <h2 id="detailsHeading" class="section-heading">鑑定で分かること</h2>
+    <div id="readingDetails" class="rich-text reading-details"></div>
+  </section>
+
+  <!-- 8-14. CTA（今動く理由／Action） -->
+  <section class="result-section cta-section" aria-labelledby="ctaButtonLabel">
+    <div id="ctaLead" class="rich-text cta-lead"></div>
+
+    <div class="cta-box">
+      <p class="cta-product-name">あなた専用・金運開花鑑定</p>
+      <p class="cta-supporting-text">
+        あなたの金運の強さ、<br>
+        まだ眠っている豊かさの力、<br>
+        お金が入ってくる入口、<br>
+        流れを止めている思考や行動、<br>
+        今後意識すべき一歩を個別に鑑定します。
+      </p>
+      <a id="ctaButton" href="#" class="submit-button cta-button" target="_blank" rel="noopener noreferrer">
+        <span class="button-glow" aria-hidden="true"></span>
+        <span class="button-label" id="ctaButtonLabel">私の金運が、どこから開くのか個別に見てもらう</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 8-15. 注意事項 -->
+  <section class="result-section disclaimer-section" aria-labelledby="disclaimerHeading">
+    <h2 id="disclaimerHeading" class="section-heading-small">注意事項</h2>
+    <div id="disclaimer" class="rich-text disclaimer-text"></div>
+  </section>
+
+  <!-- 8-16. もう一度診断する -->
+  <div class="retry-area">
+    <button type="button" id="retryButton" class="retry-button">もう一度診断する</button>
+  </div>
+
+</main>
+
+</body>
+</html>
